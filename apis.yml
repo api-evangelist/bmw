@@ -18,7 +18,7 @@ type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-02-08'
-modified: '2025-02-24'
+modified: '2025-02-25'
 position: Consuming
 description: >-
   BMW is a German multinational company that specializes in manufacturing luxury
@@ -34,3 +34,24 @@ maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 specificationVersion: '0.19'
+common:
+  - name: Aftersales Online System
+    description: 'null'
+    url: https://aos.bmwgroup.com/bmw-api
+    type: Portal
+  - name: Aftersales Online System
+    description: 'null'
+    url: https://aos.bmwgroup.com/help/overview
+    type: Support
+  - name: Aftersales Online System
+    description: 'null'
+    url: https://aos.bmwgroup.com/price-list
+    type: Pricing
+  - name: Aftersales Online System
+    description: 'null'
+    url: https://aos.bmwgroup.com/getting-started
+    type: GettingStarted
+  - name: Aftersales Online System
+    description: 'null'
+    url: https://aos.bmwgroup.com/conditions-of-use
+    type: TermsOfService
