@@ -2,7 +2,7 @@ aid: bmw
 url: https://raw.githubusercontent.com/api-evangelist/bmw/refs/heads/main/apis.yml
 apis:
   - aid: bmw:vehicle-identification-api
-    name: Vehicle Identification API
+    name: BMW Vehicle Identification API
     tags: []
     humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/vehicle-identification
     properties:
@@ -11,7 +11,7 @@ apis:
         type: Documentation
     description: 'null'
   - aid: bmw:repair-and-maintenance-api
-    name: Repair and Maintenance API
+    name: BMW Repair and Maintenance API
     tags: []
     humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/repair-maintenance
     properties:
@@ -19,7 +19,7 @@ apis:
         type: Documentation
     description: 'The product Repair '
   - aid: bmw:technical-campaign-and-map-status-api
-    name: Technical Campaign and Map Status API
+    name: BMW Technical Campaign and Map Status API
     tags: []
     humanURL: >-
       https://aos-portal.bmwgroup.com/basic/ui/#/detail/technical-campaign-map-status
@@ -29,7 +29,7 @@ apis:
         type: Documentation
     description: 'null'
   - aid: bmw:flat-rates-api
-    name: Flat Rates API
+    name: BMW Flat Rates API
     tags: []
     humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/flatrate
     properties:
@@ -37,7 +37,7 @@ apis:
         type: Documentation
     description: 'null'
   - aid: bmw:smart-maintenance-api
-    name: Smart Maintenance API
+    name: BMW Smart Maintenance API
     tags: []
     humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/smart-Maintenance
     properties:
