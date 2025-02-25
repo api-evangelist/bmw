@@ -10,6 +10,59 @@ apis:
       - url: ' https://aos.bmwgroup.com/bmw-api'
         type: Documentation
     description: ' '
+  - aid: bmw:vehicle-identification-api
+    name: Vehicle Identification API
+    description: 'null'
+    humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/vehicle-identification
+    tags: []
+    properties:
+      - type: Documentation
+        url: >-
+          https://aos-portal.bmwgroup.com/basic/ui/#/detail/vehicle-identification
+  - aid: bmw:repair-and-maintenance-api
+    name: Repair and Maintenance API
+    description: 'The product Repair '
+    humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/repair-maintenance
+    tags: []
+    properties:
+      - type: Documentation
+        url: https://aos-portal.bmwgroup.com/basic/ui/#/detail/repair-maintenance
+  - aid: bmw:technical-campaign-and-map-status-api
+    name: Technical Campaign and Map Status API
+    description: 'null'
+    humanURL: >-
+      https://aos-portal.bmwgroup.com/basic/ui/#/detail/technical-campaign-map-status
+    tags: []
+    properties:
+      - type: Documentation
+        url: >-
+          https://aos-portal.bmwgroup.com/basic/ui/#/detail/technical-campaign-map-status
+  - aid: bmw:flat-rates-api
+    name: Flat Rates API
+    description: 'null'
+    humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/flatrate
+    tags: []
+    properties:
+      - type: Documentation
+        url: https://aos-portal.bmwgroup.com/basic/ui/#/detail/flatrate
+  - aid: bmw:smart-maintenance-api
+    name: Smart Maintenance API
+    description: 'null'
+    humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/smart-Maintenance
+    tags: []
+    properties:
+      - type: Documentation
+        url: https://aos-portal.bmwgroup.com/basic/ui/#/detail/smart-Maintenance
+  - aid: bmw:bmw-open-data-platform
+    name: BMW Open Data Platform
+    description: 'null'
+    humanURL: >-
+      https://bmw-cardata.bmwgroup.com/thirdparty/public/repair-and-maintenance/technical-configuration/api-documentation
+    tags: []
+    properties:
+      - type: Documentation
+        url: >-
+          https://bmw-cardata.bmwgroup.com/thirdparty/public/repair-and-maintenance/technical-configuration/api-documentation
 name: BMW
 tags:
   - Automobiles
