@@ -1,68 +1,59 @@
 aid: bmw
 url: https://raw.githubusercontent.com/api-evangelist/bmw/refs/heads/main/apis.yml
 apis:
-  - aid: bmw:bmw
-    name: BMW
-    tags:
-      - API
-    humanURL: ' https://aos.bmwgroup.com/bmw-api'
-    properties:
-      - url: ' https://aos.bmwgroup.com/bmw-api'
-        type: Documentation
-    description: ' '
   - aid: bmw:vehicle-identification-api
     name: Vehicle Identification API
-    description: 'null'
-    humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/vehicle-identification
     tags: []
+    humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/vehicle-identification
     properties:
-      - type: Documentation
-        url: >-
+      - url: >-
           https://aos-portal.bmwgroup.com/basic/ui/#/detail/vehicle-identification
+        type: Documentation
+    description: 'null'
   - aid: bmw:repair-and-maintenance-api
     name: Repair and Maintenance API
-    description: 'The product Repair '
-    humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/repair-maintenance
     tags: []
+    humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/repair-maintenance
     properties:
-      - type: Documentation
-        url: https://aos-portal.bmwgroup.com/basic/ui/#/detail/repair-maintenance
+      - url: https://aos-portal.bmwgroup.com/basic/ui/#/detail/repair-maintenance
+        type: Documentation
+    description: 'The product Repair '
   - aid: bmw:technical-campaign-and-map-status-api
     name: Technical Campaign and Map Status API
-    description: 'null'
+    tags: []
     humanURL: >-
       https://aos-portal.bmwgroup.com/basic/ui/#/detail/technical-campaign-map-status
-    tags: []
     properties:
-      - type: Documentation
-        url: >-
+      - url: >-
           https://aos-portal.bmwgroup.com/basic/ui/#/detail/technical-campaign-map-status
+        type: Documentation
+    description: 'null'
   - aid: bmw:flat-rates-api
     name: Flat Rates API
-    description: 'null'
-    humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/flatrate
     tags: []
+    humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/flatrate
     properties:
-      - type: Documentation
-        url: https://aos-portal.bmwgroup.com/basic/ui/#/detail/flatrate
+      - url: https://aos-portal.bmwgroup.com/basic/ui/#/detail/flatrate
+        type: Documentation
+    description: 'null'
   - aid: bmw:smart-maintenance-api
     name: Smart Maintenance API
-    description: 'null'
-    humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/smart-Maintenance
     tags: []
+    humanURL: https://aos-portal.bmwgroup.com/basic/ui/#/detail/smart-Maintenance
     properties:
-      - type: Documentation
-        url: https://aos-portal.bmwgroup.com/basic/ui/#/detail/smart-Maintenance
+      - url: https://aos-portal.bmwgroup.com/basic/ui/#/detail/smart-Maintenance
+        type: Documentation
+    description: 'null'
   - aid: bmw:bmw-open-data-platform
     name: BMW Open Data Platform
-    description: 'null'
+    tags: []
     humanURL: >-
       https://bmw-cardata.bmwgroup.com/thirdparty/public/repair-and-maintenance/technical-configuration/api-documentation
-    tags: []
     properties:
-      - type: Documentation
-        url: >-
+      - url: >-
           https://bmw-cardata.bmwgroup.com/thirdparty/public/repair-and-maintenance/technical-configuration/api-documentation
+        type: Documentation
+    description: 'null'
 name: BMW
 tags:
   - Automobiles
@@ -70,6 +61,27 @@ tags:
 type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
+common:
+  - url: https://aos.bmwgroup.com/bmw-api
+    name: Aftersales Online System
+    type: Portal
+    description: 'null'
+  - url: https://aos.bmwgroup.com/help/overview
+    name: Aftersales Online System
+    type: Support
+    description: 'null'
+  - url: https://aos.bmwgroup.com/price-list
+    name: Aftersales Online System
+    type: Pricing
+    description: 'null'
+  - url: https://aos.bmwgroup.com/getting-started
+    name: Aftersales Online System
+    type: GettingStarted
+    description: 'null'
+  - url: https://aos.bmwgroup.com/conditions-of-use
+    name: Aftersales Online System
+    type: TermsOfService
+    description: 'null'
 created: '2025-02-08'
 modified: '2025-02-25'
 position: Consuming
@@ -87,24 +99,3 @@ maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 specificationVersion: '0.19'
-common:
-  - name: Aftersales Online System
-    description: 'null'
-    url: https://aos.bmwgroup.com/bmw-api
-    type: Portal
-  - name: Aftersales Online System
-    description: 'null'
-    url: https://aos.bmwgroup.com/help/overview
-    type: Support
-  - name: Aftersales Online System
-    description: 'null'
-    url: https://aos.bmwgroup.com/price-list
-    type: Pricing
-  - name: Aftersales Online System
-    description: 'null'
-    url: https://aos.bmwgroup.com/getting-started
-    type: GettingStarted
-  - name: Aftersales Online System
-    description: 'null'
-    url: https://aos.bmwgroup.com/conditions-of-use
-    type: TermsOfService
