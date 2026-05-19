@@ -124,6 +124,10 @@ apis:
         url: https://bmw-cardata.bmwgroup.com/thirdparty/public/repair-and-maintenance/technical-configuration/api-documentation
 
 common:
+  - type: GitHubOrganization
+    url: https://github.com/bmwgroup
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/bmw-group
   - url: https://www.bmw.com
     type: Website
   - url: https://aos.bmwgroup.com/bmw-api
