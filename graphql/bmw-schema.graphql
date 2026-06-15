@@ -1,0 +1,848 @@
+"""
+BMW Connected Drive GraphQL API Schema
+Conceptual schema derived from BMW REST API covering connected vehicle services,
+remote operations, navigation, charging, trips, and vehicle status.
+"""
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+# ─── Root Types ────────────────────────────────────────────────────────────────
+
+type Query {
+  """Retrieve a specific vehicle by VIN."""
+  vehicle(vin: String!): Vehicle
+
+  """List all vehicles registered to the authenticated account."""
+  vehicles: [Vehicle!]!
+
+  """Get the current status of a vehicle."""
+  vehicleStatus(vin: String!): VehicleStatus
+
+  """Get the current location of a vehicle."""
+  vehicleLocation(vin: String!): VehicleLocation
+
+  """List trips recorded for a vehicle."""
+  trips(vin: String!, filter: TripFilter): [Trip!]!
+
+  """Get a single trip by ID."""
+  trip(vin: String!, tripId: String!): Trip
+
+  """List navigation destinations stored for a vehicle."""
+  navigationDestinations(vin: String!): [NavigationDestination!]!
+
+  """Get charging status for an electric or hybrid vehicle."""
+  chargingStatus(vin: String!): ChargingStatus
+
+  """Get charging sessions history for a vehicle."""
+  chargingSessions(vin: String!, filter: ChargingSessionFilter): [ChargingSession!]!
+
+  """List available charge points near a location."""
+  chargePoints(location: GeoLocationInput!, radius: Float): [ChargePoint!]!
+
+  """Get fuel/energy statistics for a vehicle."""
+  fuelStatistics(vin: String!): FuelStatistics
+
+  """Get the service history for a vehicle."""
+  serviceHistory(vin: String!): [ServiceRecord!]!
+
+  """Get vehicle identification details by VIN."""
+  vehicleIdentification(vin: String!): VehicleIdentification
+
+  """Get maintenance schedule for a vehicle."""
+  maintenanceSchedule(vin: String!): MaintenanceSchedule
+
+  """Get connected account profile."""
+  accountProfile: AccountProfile
+
+  """List remote service requests and their statuses."""
+  remoteServiceRequests(vin: String!): [RemoteServiceRequest!]!
+
+  """Get a specific remote service request."""
+  remoteServiceRequest(vin: String!, requestId: String!): RemoteServiceRequest
+
+  """Get vehicle configuration and options."""
+  vehicleConfiguration(vin: String!): VehicleConfiguration
+}
+
+type Mutation {
+  """Lock the vehicle doors."""
+  lockDoors(vin: String!): RemoteServiceRequest!
+
+  """Unlock the vehicle doors."""
+  unlockDoors(vin: String!): RemoteServiceRequest!
+
+  """Activate the horn and lights to locate vehicle."""
+  honkAndFlash(vin: String!): RemoteServiceRequest!
+
+  """Flash the lights only."""
+  flashLights(vin: String!): RemoteServiceRequest!
+
+  """Start the vehicle climate control."""
+  startClimateControl(vin: String!, settings: ClimateControlInput): RemoteServiceRequest!
+
+  """Stop the vehicle climate control."""
+  stopClimateControl(vin: String!): RemoteServiceRequest!
+
+  """Send a navigation destination to the vehicle."""
+  sendNavigationDestination(vin: String!, destination: NavigationDestinationInput!): NavigationDestination!
+
+  """Delete a stored navigation destination."""
+  deleteNavigationDestination(vin: String!, destinationId: String!): Boolean!
+
+  """Start charging (for plugin vehicles)."""
+  startCharging(vin: String!): RemoteServiceRequest!
+
+  """Stop charging (for plugin vehicles)."""
+  stopCharging(vin: String!): RemoteServiceRequest!
+
+  """Set a charging schedule."""
+  setChargingSchedule(vin: String!, schedule: ChargingScheduleInput!): ChargingSchedule!
+
+  """Update account profile preferences."""
+  updateAccountProfile(input: AccountProfileInput!): AccountProfile!
+}
+
+type Subscription {
+  """Subscribe to real-time vehicle status updates."""
+  vehicleStatusUpdated(vin: String!): VehicleStatus!
+
+  """Subscribe to remote service request status changes."""
+  remoteServiceRequestUpdated(vin: String!, requestId: String!): RemoteServiceRequest!
+
+  """Subscribe to charging status updates."""
+  chargingStatusUpdated(vin: String!): ChargingStatus!
+
+  """Subscribe to vehicle location updates."""
+  vehicleLocationUpdated(vin: String!): VehicleLocation!
+}
+
+# ─── Vehicle Types ─────────────────────────────────────────────────────────────
+
+"""A BMW vehicle registered to an account."""
+type Vehicle {
+  vin: String!
+  model: String!
+  modelYear: Int!
+  series: String
+  bodyType: BodyType
+  color: String
+  colorCode: String
+  fuelType: FuelType!
+  driveType: DriveType
+  transmissionType: TransmissionType
+  engineDisplacement: Float
+  enginePower: Int
+  doors: Int
+  seats: Int
+  licensePlate: String
+  nickname: String
+  purchaseDate: String
+  configuration: VehicleConfiguration
+  status: VehicleStatus
+  location: VehicleLocation
+  chargingStatus: ChargingStatus
+}
+
+"""Detailed vehicle identification data."""
+type VehicleIdentification {
+  vin: String!
+  manufacturer: String!
+  make: String!
+  model: String!
+  modelYear: Int!
+  series: String
+  trimLevel: String
+  bodyType: BodyType
+  engineCode: String
+  engineDisplacement: Float
+  enginePower: Int
+  fuelType: FuelType!
+  transmissionType: TransmissionType
+  driveType: DriveType
+  productionDate: String
+  countryOfManufacture: String
+  equipmentList: [VehicleEquipment!]
+}
+
+"""Vehicle optional equipment and packages."""
+type VehicleEquipment {
+  code: String!
+  description: String!
+  category: EquipmentCategory
+}
+
+"""Full vehicle configuration including options."""
+type VehicleConfiguration {
+  vin: String!
+  exteriorColor: ColorOption
+  interiorColor: ColorOption
+  wheels: WheelOption
+  packages: [PackageOption!]
+  individualOptions: [IndividualOption!]
+}
+
+"""Color option for exterior or interior."""
+type ColorOption {
+  code: String!
+  name: String!
+  type: ColorType
+}
+
+"""Wheel option."""
+type WheelOption {
+  code: String!
+  name: String!
+  size: Int
+  style: String
+}
+
+"""Package option (e.g. M Sport, Technology Package)."""
+type PackageOption {
+  code: String!
+  name: String!
+  description: String
+}
+
+"""Individual option."""
+type IndividualOption {
+  code: String!
+  description: String!
+}
+
+# ─── Vehicle Status Types ──────────────────────────────────────────────────────
+
+"""Current status snapshot of a vehicle."""
+type VehicleStatus {
+  vin: String!
+  timestamp: String!
+  doorsStatus: DoorsStatus
+  windowsStatus: WindowsStatus
+  lightsStatus: LightsStatus
+  fuelStatus: FuelStatus
+  mileage: Float
+  remainingRange: Float
+  parkingBrake: Boolean
+  engineRunning: Boolean
+  chargingStatus: ChargingStatus
+  conditionBasedServices: [ConditionBasedService!]
+  checkControlMessages: [CheckControlMessage!]
+}
+
+"""Status of all vehicle doors."""
+type DoorsStatus {
+  driverFront: DoorState!
+  passengerFront: DoorState!
+  driverRear: DoorState
+  passengerRear: DoorState
+  trunk: DoorState
+  hood: DoorState
+  locked: Boolean!
+}
+
+"""Status of all vehicle windows."""
+type WindowsStatus {
+  driverFront: WindowState!
+  passengerFront: WindowState!
+  driverRear: WindowState
+  passengerRear: WindowState
+  sunroof: WindowState
+}
+
+"""Status of vehicle lights."""
+type LightsStatus {
+  parkingLight: LightState
+  lowBeam: LightState
+  highBeam: LightState
+  hazards: LightState
+}
+
+"""Fuel or energy level status."""
+type FuelStatus {
+  fuelLevel: Float
+  fuelLevelPercent: Float
+  remainingRange: Float
+  remainingRangeUnit: DistanceUnit
+  electricRange: Float
+  electricRangeUnit: DistanceUnit
+}
+
+"""A condition-based service indicator."""
+type ConditionBasedService {
+  serviceCode: String!
+  serviceName: String!
+  status: ServiceStatus!
+  dueDate: String
+  dueDistance: Float
+  dueDistanceUnit: DistanceUnit
+}
+
+"""A check control message from the vehicle."""
+type CheckControlMessage {
+  messageCode: String!
+  description: String!
+  severity: MessageSeverity!
+}
+
+# ─── Location Types ────────────────────────────────────────────────────────────
+
+"""Geographic location of a vehicle."""
+type VehicleLocation {
+  vin: String!
+  timestamp: String!
+  latitude: Float!
+  longitude: Float!
+  heading: Float
+  altitude: Float
+  accuracy: Float
+  address: Address
+  parkingStatus: ParkingStatus
+}
+
+"""Resolved address for a geographic location."""
+type Address {
+  street: String
+  houseNumber: String
+  city: String
+  postalCode: String
+  country: String
+  countryCode: String
+  formattedAddress: String
+}
+
+"""Parking location and status."""
+type ParkingStatus {
+  isParkingActive: Boolean!
+  parkingStartTime: String
+  parkingLocation: GeoLocation
+}
+
+"""A geographic coordinate."""
+type GeoLocation {
+  latitude: Float!
+  longitude: Float!
+}
+
+"""Input for geographic location."""
+input GeoLocationInput {
+  latitude: Float!
+  longitude: Float!
+}
+
+# ─── Navigation Types ──────────────────────────────────────────────────────────
+
+"""A stored navigation destination."""
+type NavigationDestination {
+  destinationId: String!
+  vin: String
+  name: String!
+  address: Address!
+  location: GeoLocation!
+  category: DestinationCategory
+  createdAt: String
+  lastUsed: String
+}
+
+"""Input for sending a navigation destination to a vehicle."""
+input NavigationDestinationInput {
+  name: String!
+  latitude: Float!
+  longitude: Float!
+  street: String
+  houseNumber: String
+  city: String
+  postalCode: String
+  country: String
+  category: DestinationCategory
+}
+
+# ─── Charging Types ────────────────────────────────────────────────────────────
+
+"""Current charging status of a plug-in vehicle."""
+type ChargingStatus {
+  vin: String!
+  timestamp: String!
+  connectionStatus: ConnectionStatus!
+  chargingState: ChargingState!
+  chargeType: ChargeType
+  chargingRateKw: Float
+  chargePercent: Float!
+  remainingChargingMinutes: Int
+  targetSoc: Float
+  pluggedIn: Boolean!
+  chargerType: ChargerType
+  lastCharged: String
+}
+
+"""A historical charging session."""
+type ChargingSession {
+  sessionId: String!
+  vin: String!
+  startTime: String!
+  endTime: String
+  energyKwh: Float
+  startSoc: Float
+  endSoc: Float
+  chargeLocation: Address
+  chargePointId: String
+  cost: ChargingCost
+  chargeType: ChargeType
+}
+
+"""Cost information for a charging session."""
+type ChargingCost {
+  amount: Float
+  currency: String
+  pricePerKwh: Float
+}
+
+"""A public charge point."""
+type ChargePoint {
+  chargePointId: String!
+  name: String!
+  location: GeoLocation!
+  address: Address
+  connectors: [Connector!]!
+  operatorName: String
+  network: String
+  availability: ChargePointAvailability
+  pricing: String
+}
+
+"""A charging connector at a charge point."""
+type Connector {
+  connectorId: String!
+  type: ConnectorType!
+  maxPowerKw: Float!
+  status: ConnectorStatus!
+  format: ConnectorFormat
+}
+
+"""A charging schedule for the vehicle."""
+type ChargingSchedule {
+  vin: String!
+  enabled: Boolean!
+  targetSoc: Float!
+  preferredStartTime: String
+  tariffZone: TariffZone
+  weeklySchedule: [DaySchedule!]
+}
+
+"""Schedule entry for a day of the week."""
+type DaySchedule {
+  dayOfWeek: DayOfWeek!
+  startTime: String!
+  endTime: String!
+  active: Boolean!
+}
+
+"""Input to set a charging schedule."""
+input ChargingScheduleInput {
+  enabled: Boolean!
+  targetSoc: Float
+  preferredStartTime: String
+  weeklySchedule: [DayScheduleInput!]
+}
+
+"""Input for a weekly day schedule."""
+input DayScheduleInput {
+  dayOfWeek: DayOfWeek!
+  startTime: String!
+  endTime: String!
+  active: Boolean!
+}
+
+# ─── Trip Types ────────────────────────────────────────────────────────────────
+
+"""A recorded trip."""
+type Trip {
+  tripId: String!
+  vin: String!
+  startTime: String!
+  endTime: String!
+  startAddress: Address
+  endAddress: Address
+  startLocation: GeoLocation!
+  endLocation: GeoLocation!
+  distanceKm: Float!
+  durationMinutes: Int!
+  averageSpeed: Float
+  maxSpeed: Float
+  fuelConsumed: Float
+  energyConsumedKwh: Float
+  electricDistanceKm: Float
+  efficiency: TripEfficiency
+  drivingStyle: DrivingStyle
+  waypoints: [TripWaypoint!]
+}
+
+"""Efficiency data for a trip."""
+type TripEfficiency {
+  fuelConsumptionPer100Km: Float
+  electricConsumptionPer100Km: Float
+  co2EmissionsGPerKm: Float
+  efficiencyScore: Int
+}
+
+"""Driving style analysis for a trip."""
+type DrivingStyle {
+  accelerationScore: Int
+  brakingScore: Int
+  cornersScore: Int
+  overallScore: Int
+}
+
+"""A waypoint along a trip route."""
+type TripWaypoint {
+  timestamp: String!
+  location: GeoLocation!
+  speed: Float
+  heading: Float
+}
+
+"""Filter input for trip queries."""
+input TripFilter {
+  startDate: String
+  endDate: String
+  minDistanceKm: Float
+  maxDistanceKm: Float
+  limit: Int
+  offset: Int
+}
+
+# ─── Fuel Statistics Types ─────────────────────────────────────────────────────
+
+"""Aggregated fuel and energy statistics."""
+type FuelStatistics {
+  vin: String!
+  totalDistanceKm: Float
+  averageFuelConsumptionPer100Km: Float
+  averageElectricConsumptionPer100Km: Float
+  totalFuelConsumedLiters: Float
+  totalEnergyConsumedKwh: Float
+  totalCo2EmissionsKg: Float
+  electricDriveRatio: Float
+  lastUpdated: String
+}
+
+# ─── Service & Maintenance Types ───────────────────────────────────────────────
+
+"""A historical service record."""
+type ServiceRecord {
+  recordId: String!
+  vin: String!
+  serviceDate: String!
+  mileageAtService: Float!
+  serviceType: String!
+  description: String
+  dealerName: String
+  dealerAddress: Address
+  workPerformed: [ServiceItem!]
+  cost: Float
+  currency: String
+}
+
+"""An individual item of work performed during service."""
+type ServiceItem {
+  itemCode: String!
+  description: String!
+  partNumber: String
+  laborHours: Float
+}
+
+"""Upcoming maintenance schedule for a vehicle."""
+type MaintenanceSchedule {
+  vin: String!
+  nextServiceDate: String
+  nextServiceMileage: Float
+  upcomingServices: [ScheduledService!]!
+  overdue: [ScheduledService!]
+}
+
+"""A specific scheduled maintenance item."""
+type ScheduledService {
+  serviceCode: String!
+  serviceName: String!
+  dueDate: String
+  dueMileage: Float
+  priority: ServicePriority!
+  description: String
+}
+
+# ─── Remote Service Types ──────────────────────────────────────────────────────
+
+"""A remote service request and its current state."""
+type RemoteServiceRequest {
+  requestId: String!
+  vin: String!
+  serviceType: RemoteServiceType!
+  status: RemoteRequestStatus!
+  initiatedAt: String!
+  completedAt: String
+  errorCode: String
+  errorMessage: String
+}
+
+"""Input settings for climate control."""
+input ClimateControlInput {
+  targetTemperatureCelsius: Float
+  seatHeatingDriver: Boolean
+  seatHeatingPassenger: Boolean
+  rearWindowDefrost: Boolean
+}
+
+# ─── Account Types ─────────────────────────────────────────────────────────────
+
+"""User account profile."""
+type AccountProfile {
+  accountId: String!
+  email: String!
+  firstName: String
+  lastName: String
+  phone: String
+  preferredLanguage: String
+  preferredDistanceUnit: DistanceUnit
+  preferredTemperatureUnit: TemperatureUnit
+  connectedDriveConsent: Boolean
+  marketingConsent: Boolean
+  registeredVehicles: [Vehicle!]
+}
+
+"""Input for updating account profile."""
+input AccountProfileInput {
+  firstName: String
+  lastName: String
+  phone: String
+  preferredLanguage: String
+  preferredDistanceUnit: DistanceUnit
+  preferredTemperatureUnit: TemperatureUnit
+  marketingConsent: Boolean
+}
+
+# ─── Tariff Zone ───────────────────────────────────────────────────────────────
+
+"""A tariff zone used for scheduled charging."""
+type TariffZone {
+  name: String!
+  cheapStartTime: String!
+  cheapEndTime: String!
+  isActive: Boolean!
+}
+
+# ─── Enum Types ────────────────────────────────────────────────────────────────
+
+enum BodyType {
+  SEDAN
+  COUPE
+  CONVERTIBLE
+  SAV
+  SAC
+  TOURING
+  GRAN_COUPE
+  GRAN_TURISMO
+  ROADSTER
+  HATCHBACK
+  PICKUP
+}
+
+enum FuelType {
+  PETROL
+  DIESEL
+  ELECTRIC
+  PLUGIN_HYBRID_PETROL
+  PLUGIN_HYBRID_DIESEL
+  MILD_HYBRID_PETROL
+  MILD_HYBRID_DIESEL
+  HYDROGEN
+}
+
+enum DriveType {
+  FRONT_WHEEL_DRIVE
+  REAR_WHEEL_DRIVE
+  ALL_WHEEL_DRIVE
+  XDRIVE
+}
+
+enum TransmissionType {
+  MANUAL
+  AUTOMATIC
+  STEPTRONIC
+  DCT
+  SINGLE_SPEED
+}
+
+enum DoorState {
+  OPEN
+  CLOSED
+  LOCKED
+  UNKNOWN
+}
+
+enum WindowState {
+  OPEN
+  CLOSED
+  PARTIALLY_OPEN
+  UNKNOWN
+}
+
+enum LightState {
+  ON
+  OFF
+  UNKNOWN
+}
+
+enum ServiceStatus {
+  OK
+  OVERDUE
+  DUE_SOON
+  UNKNOWN
+}
+
+enum MessageSeverity {
+  INFO
+  WARNING
+  ERROR
+  CRITICAL
+}
+
+enum ConnectionStatus {
+  CONNECTED
+  DISCONNECTED
+  FAULT
+}
+
+enum ChargingState {
+  NOT_CHARGING
+  CHARGING
+  FULLY_CHARGED
+  WAITING_FOR_CHARGING
+  CHARGE_INHIBITED
+  TARGET_REACHED
+  ERROR
+}
+
+enum ChargeType {
+  AC
+  DC
+  INDUCTIVE
+}
+
+enum ChargerType {
+  AC_LEVEL_1
+  AC_LEVEL_2
+  DC_FAST
+  DC_RAPID
+  UNKNOWN
+}
+
+enum ConnectorType {
+  TYPE1_J1772
+  TYPE2_MENNEKES
+  CCS_COMBO1
+  CCS_COMBO2
+  CHADEMO
+  SCHUKO
+  TESLA
+  GB_T
+}
+
+enum ConnectorStatus {
+  AVAILABLE
+  OCCUPIED
+  FAULTED
+  UNAVAILABLE
+  UNKNOWN
+}
+
+enum ConnectorFormat {
+  CABLE
+  SOCKET
+}
+
+enum ChargePointAvailability {
+  AVAILABLE
+  PARTIALLY_AVAILABLE
+  UNAVAILABLE
+}
+
+enum DestinationCategory {
+  HOME
+  WORK
+  FAVORITE
+  RECENT
+  POI
+  OTHER
+}
+
+enum RemoteServiceType {
+  LOCK_DOORS
+  UNLOCK_DOORS
+  HONK_AND_FLASH
+  FLASH_LIGHTS
+  START_CLIMATE
+  STOP_CLIMATE
+  START_CHARGING
+  STOP_CHARGING
+}
+
+enum RemoteRequestStatus {
+  INITIATED
+  PENDING
+  DELIVERED
+  EXECUTED
+  FAILED
+  TIMEOUT
+}
+
+enum DistanceUnit {
+  KM
+  MILES
+}
+
+enum TemperatureUnit {
+  CELSIUS
+  FAHRENHEIT
+}
+
+enum EquipmentCategory {
+  SAFETY
+  COMFORT
+  INFOTAINMENT
+  PERFORMANCE
+  EXTERIOR
+  INTERIOR
+  CONNECTIVITY
+  DRIVER_ASSISTANCE
+}
+
+enum ColorType {
+  SOLID
+  METALLIC
+  INDIVIDUAL
+}
+
+enum ServicePriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum DayOfWeek {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+enum ParkingStatus {
+  PARKED
+  IN_MOTION
+  UNKNOWN
+}
