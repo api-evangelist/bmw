@@ -22,7 +22,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bmw.png
 url: https://raw.githubusercontent.com/api-evangelist/bmw/refs/heads/main/apis.yml
 created: '2025-02-08'
 modified: '2026-04-21'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 tags:
 - Automobiles
 - Cars
