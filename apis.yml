@@ -56,8 +56,6 @@ apis:
   properties:
   - type: Documentation
     url: https://aos-portal.bmwgroup.com/basic/ui/#/detail/vehicle-identification
-  - url: graphql/bmw-graphql.md
-    type: GraphQL
 - aid: bmw:repair-and-maintenance-api
   name: BMW Repair and Maintenance API
   description: The BMW Repair and Maintenance API provides access to maintenance schedules,
