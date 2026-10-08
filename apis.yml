@@ -134,6 +134,12 @@ apis:
   - type: Documentation
     url: https://bmw-cardata.bmwgroup.com/thirdparty/public/repair-and-maintenance/technical-configuration/api-documentation
 common:
+- type: Plans
+  url: plans/bmw-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/bmw-rate-limits.yml
+- type: FinOps
+  url: finops/bmw-finops.yml
 - type: DomainSecurity
   url: security/bmw-domain-security.yml
 - type: GitHubOrganization
