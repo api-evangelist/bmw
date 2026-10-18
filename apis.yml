@@ -39,6 +39,12 @@ tags:
 - Cars
 - Vehicles
 - Automotive
+- Connected Vehicles
+tags_raw:
+- Automobiles
+- Cars
+- Vehicles
+- Automotive
 - Connected Car
 apis:
 - aid: bmw:vehicle-identification-api
@@ -112,6 +118,12 @@ apis:
   - Automobiles
   - Smart Maintenance
   - Diagnostics
+  - Connected Vehicles
+  - Telematics
+  tags_raw:
+  - Automobiles
+  - Smart Maintenance
+  - Diagnostics
   - Connected Car
   - Telematics
   properties:
@@ -125,6 +137,12 @@ apis:
     experience and vehicle performance optimization.
   humanURL: https://bmw-cardata.bmwgroup.com/thirdparty/public/repair-and-maintenance/technical-configuration/api-documentation
   tags:
+  - Automobiles
+  - Open Data
+  - Connected Vehicles
+  - Telematics
+  - Vehicle Data
+  tags_raw:
   - Automobiles
   - Open Data
   - Connected Car
