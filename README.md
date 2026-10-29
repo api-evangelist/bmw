@@ -66,36 +66,116 @@
 
 BMW is a German multinational company specializing in manufacturing luxury vehicles and motorcycles. BMW provides automotive data APIs through the Aftersales Online System (AOS) portal and the BMW Open Data Platform, enabling dealers, repair shops, and developers to access vehicle identification, maintenance, technical campaign, pricing, and diagnostic data.
 
-**URL:** [View APIs.yml](https://raw.githubusercontent.com/api-evangelist/bmw/refs/heads/main/apis.yml)
+**Areas:** Automobiles · Cars · Vehicles · Automotive · Connected Vehicles
 
-## APIs
+## BMW on APIs.io
 
-### BMW Vehicle Identification API
-Access detailed vehicle information by VIN including make, model, year, trim level, engine size, transmission type, and technical configuration.
+Everything profiled for BMW is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bmw/](https://apis.io/providers/bmw/)** — or go straight to one of the APIs or properties below.
 
-### BMW Repair and Maintenance API
-Maintenance schedules, diagnostic information, and technical specifications for BMW vehicles for technicians and repair shops.
+### APIs (6)
 
-### BMW Technical Campaign and Map Status API
-Real-time status of technical campaigns and software map updates including progress, completion timelines, and announcements.
+- [BMW Vehicle Identification API](https://apis.io/apis/bmw/vehicle-identification-api/) — The BMW Vehicle Identification API allows users to access detailed information about BMW vehicles by inputting their unique vehicle identification number…
+- [BMW Repair and Maintenance API](https://apis.io/apis/bmw/repair-and-maintenance-api/) — The BMW Repair and Maintenance API provides access to maintenance schedules, diagnostic information, and technical specifications for BMW vehicles. Enables…
+- [BMW Technical Campaign and Map Status API](https://apis.io/apis/bmw/technical-campaign-and-map-status-api/) — The BMW Technical Campaign and Map Status API provides real-time data on the status of technical campaigns and software map updates related to BMW vehicles,…
+- [BMW Flat Rates API](https://apis.io/apis/bmw/flat-rates-api/) — The BMW Flat Rates API provides access to a database of fixed prices for specific services and repairs on BMW vehicles, enabling transparent and…
+- [BMW Smart Maintenance API](https://apis.io/apis/bmw/smart-maintenance-api/) — The BMW Smart Maintenance API provides real-time vehicle health and maintenance need information by connecting to the vehicle's onboard diagnostic system,…
+- [BMW Open Data Platform](https://apis.io/apis/bmw/bmw-open-data-platform/) — The BMW Open Data Platform provides developers, researchers, and innovators with access to vehicle data including performance metrics, sensor data, and…
 
-### BMW Flat Rates API
-Fixed pricing database for specific services and repairs on BMW vehicles for transparent and standardized service pricing.
+### Published properties
 
-### BMW Smart Maintenance API
-Real-time vehicle health and maintenance needs via onboard diagnostic data including engine performance, tire pressure, and vehicle condition.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### BMW Open Data Platform
-Vehicle data platform providing performance metrics, sensor data, and diagnostic information for connected car application development.
+#### GraphQL (1)
 
-## Links
+GraphQL schemas.
+
+- [Moved to /providers/bmw/](https://apis.io/graphqls/bmw/bmw-graphql/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bmw Domain Security](https://apis.io/security/bmw/bmw-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Bmw Plans Pricing](https://apis.io/plans/bmw/bmw-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Bmw Rate Limits](https://apis.io/rate-limits/bmw/bmw-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Bmw Finops](https://apis.io/finops/bmw/bmw-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.bmw.com)
-- [Aftersales Online System (AOS) Portal](https://aos.bmwgroup.com/bmw-api)
-- [Getting Started](https://aos.bmwgroup.com/getting-started)
+- [Getting started](https://aos.bmwgroup.com/getting-started)
+- [Pricing](https://aos.bmwgroup.com/price-list)
 - [Support](https://aos.bmwgroup.com/help/overview)
-- [Terms of Use](https://aos.bmwgroup.com/conditions-of-use)
+- [Blog](https://www.press.bmwgroup.com/global/rss)
+- [Terms of service](https://aos.bmwgroup.com/conditions-of-use)
+- [GitHub](https://github.com/bmwgroup)
 
-## Maintainers
+## API Evangelist rating
 
-- **Kin Lane** - kinlane@gmail.com
+**Kin Score 20.2** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 38.1 |
+| Access clarity | 28.9 |
+
+**Agent readiness 0.6** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 9.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bmw/](https://apis.io/providers/bmw/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for BMW: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bmw/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
